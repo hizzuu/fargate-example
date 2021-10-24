@@ -1,0 +1,36 @@
+version: "3"
+services:
+  api:
+    container_name: api
+    build:
+      context: ./build/api
+      target: dev
+    env_file:
+      - build/api/.env
+    tty: true
+    ports:
+      - 8080:8080
+    volumes:
+      - .:/app
+    depends_on:
+      - db
+
+  db:
+    container_name: db
+    image: postgres:14.0
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: app_db
+      TZ: "Asia/Tokyo"
+    volumes:
+      - db:/var/lib/postgresql/data
+
+networks:
+  default:
+    name: app_net
+
+volumes:
+  db:
