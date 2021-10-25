@@ -12,6 +12,9 @@ build:
 down:
 	docker compose down
 
+lint:
+	docker compose run --rm $(API_SVC) go vet ./...
+
 shell:
 	docker exec -it $(API_SVC) sh
 

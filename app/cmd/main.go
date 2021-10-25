@@ -1,10 +1,10 @@
 package main
 
 import (
-	"github.com/hizzuu/app/infrastructure"
+	"github.com/hizzuu/app/infrastructure/router"
 )
 
 func main() {
-	router := infrastructure.NewRouter()
+	router := router.NewRouter()
 	router.Run()
 }

@@ -19,7 +19,9 @@ type UserController interface {
 	Delete(ctx Context)
 }
 
-func NewUserController(userInteractor interactor.UserInteractor) UserController {
+func NewUserController(
+	userInteractor interactor.UserInteractor,
+) UserController {
 	return &userController{
 		userInteractor,
 	}
