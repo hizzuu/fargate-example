@@ -1,4 +1,3 @@
-#;;
 API_SVC = api
 DB_SVC  = db
 DB_NAME = app_db
