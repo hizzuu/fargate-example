@@ -5,15 +5,7 @@ import "github.com/hizzuu/app/domain"
 type userRepository struct {
 }
 
-type UserRepository interface {
-	Get(id int64) (*domain.User, error)
-	List()
-	Create()
-	Update()
-	Delete()
-}
-
-func NewUserRepository() UserRepository {
+func NewUserRepository() *userRepository {
 	return &userRepository{}
 }
 

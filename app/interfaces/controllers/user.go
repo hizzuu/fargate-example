@@ -11,17 +11,9 @@ type userController struct {
 	userInteractor interactor.UserInteractor
 }
 
-type UserController interface {
-	Get(ctx Context)
-	List(ctx Context)
-	Create(ctx Context)
-	Update(ctx Context)
-	Delete(ctx Context)
-}
-
 func NewUserController(
 	userInteractor interactor.UserInteractor,
-) UserController {
+) *userController {
 	return &userController{
 		userInteractor,
 	}
