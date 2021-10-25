@@ -23,5 +23,5 @@ jobs:
         env:
           GO111MODULE: on
       - name: go vet
-        run: go vet ./
+        run: go vet ./...
         working-directory: ./app
