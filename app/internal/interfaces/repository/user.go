@@ -1,6 +1,6 @@
 package repository
 
-import "github.com/hizzuu/app/domain"
+import "github.com/hizzuu/app/internal/domain"
 
 type userRepository struct {
 }

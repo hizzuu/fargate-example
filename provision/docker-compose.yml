@@ -1,0 +1,9 @@
+version: "3"
+services:
+  terraform:
+    image: hashicorp/terraform:light
+    working_dir: /terraform/production
+    volumes:
+      - ./:/terraform
+    env_file:
+      - ./terraform.env

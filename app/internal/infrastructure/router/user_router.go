@@ -2,9 +2,9 @@ package router
 
 import (
 	"github.com/gin-gonic/gin"
-	"github.com/hizzuu/app/interfaces/controllers"
-	"github.com/hizzuu/app/interfaces/repository"
-	"github.com/hizzuu/app/usecase/interactor"
+	"github.com/hizzuu/app/internal/interfaces/controllers"
+	"github.com/hizzuu/app/internal/interfaces/repository"
+	"github.com/hizzuu/app/internal/usecase/interactor"
 )
 
 func (r *router) setupUserRouter() {

@@ -1,6 +1,9 @@
+root = "."
+tmp_dir = "tools/air/tmp"
+
 [build]
-  bin = "./tmp/main"
-  cmd = "go build -o ./tmp/main ./cmd/main.go"
+  bin = "./tools/air/tmp/main"
+  cmd = "go build -o ./tools/air/tmp/main ./cmd/main.go"
   delay = 1000
   exclude_dir = ["assets", "tmp", "vendor"]
   exclude_file = []

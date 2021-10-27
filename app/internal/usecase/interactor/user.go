@@ -1,8 +1,8 @@
 package interactor
 
 import (
-	"github.com/hizzuu/app/domain"
-	"github.com/hizzuu/app/usecase/repository"
+	"github.com/hizzuu/app/internal/domain"
+	"github.com/hizzuu/app/internal/usecase/repository"
 )
 
 type userInteractor struct {

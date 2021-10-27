@@ -4,7 +4,7 @@ import (
 	"net/http"
 	"strconv"
 
-	"github.com/hizzuu/app/usecase/interactor"
+	"github.com/hizzuu/app/internal/usecase/interactor"
 )
 
 type userController struct {

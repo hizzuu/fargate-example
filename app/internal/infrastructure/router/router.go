@@ -1,8 +1,10 @@
 package router
 
 import (
+	"net/http"
+
 	"github.com/gin-gonic/gin"
-	"github.com/hizzuu/app/infrastructure"
+	"github.com/hizzuu/app/internal/infrastructure"
 )
 
 type router struct {
@@ -29,5 +31,9 @@ func (r *router) initMiddleware() {
 }
 
 func (r *router) initRouting() {
+	v1 := r.e.Group("/v1")
+	v1.GET("/healthcheck", func(c *gin.Context) {
+		c.JSON(http.StatusOK, gin.H{"status": "OK"})
+	})
 	r.setupUserRouter()
 }
