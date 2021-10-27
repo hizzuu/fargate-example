@@ -1,6 +1,8 @@
 package interactor
 
 import (
+	"context"
+
 	"github.com/hizzuu/app/internal/domain"
 	"github.com/hizzuu/app/internal/usecase/repository"
 )
@@ -10,7 +12,7 @@ type userInteractor struct {
 }
 
 type UserInteractor interface {
-	Get(id int64) (*domain.User, error)
+	Get(ctx context.Context, id int64) (*domain.User, error)
 	List()
 	Create()
 	Update()
@@ -23,8 +25,8 @@ func NewUserInteractor(userRepo repository.UserRepository) UserInteractor {
 	}
 }
 
-func (i *userInteractor) Get(id int64) (*domain.User, error) {
-	return i.userRepo.Get(id)
+func (i *userInteractor) Get(ctx context.Context, id int64) (*domain.User, error) {
+	return i.userRepo.Get(ctx, id)
 }
 
 func (i *userInteractor) List() {

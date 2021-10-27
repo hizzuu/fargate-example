@@ -25,7 +25,7 @@ func (c *userController) Get(ctx Context) {
 		ctx.JSON(http.StatusBadRequest, err)
 		return
 	}
-	u, err := c.userInteractor.Get(id)
+	u, err := c.userInteractor.Get(ctx, id)
 	if err != nil {
 		ctx.JSON(http.StatusBadRequest, err)
 		return

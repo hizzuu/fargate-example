@@ -1,6 +1,10 @@
 package repository
 
-import "github.com/hizzuu/app/internal/domain"
+import (
+	"context"
+
+	"github.com/hizzuu/app/internal/domain"
+)
 
 type userRepository struct {
 }
@@ -9,7 +13,7 @@ func NewUserRepository() *userRepository {
 	return &userRepository{}
 }
 
-func (r *userRepository) Get(id int64) (*domain.User, error) {
+func (r *userRepository) Get(ctx context.Context, id int64) (*domain.User, error) {
 	u := &domain.User{}
 	return u, nil
 }
