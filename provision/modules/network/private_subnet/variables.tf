@@ -1,3 +1,5 @@
+variable "service" {}
+
 variable "subnets" {
   default = {
     "10.0.3.0/24" = "ap-northeast-1a",

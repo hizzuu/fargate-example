@@ -1,9 +1,5 @@
-variable "name" {
+variable "service" {
   default = "fargate-sample"
-}
-
-variable "environment" {
-  default = "production"
 }
 
 variable "region" {

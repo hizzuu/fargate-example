@@ -19,19 +19,10 @@ shell:
 	docker exec -it $(API_SVC) sh
 
 migration-gen:
-	docker run --rm --name new_migrate -v $(PWD)/tools/migrations:/migrations \
-	migrate/migrate:latest create -ext sql -dir ./migrations $(CMD)
+	docker run --rm --name new_migrate -v $(PWD)/tools/db/migration:/migration \
+	migrate/migrate:latest create -ext sql -dir ./migration $(CMD)
 
 migrate:
 	docker run --rm --name migrate --net $(NET) \
-	-v $(PWD)/tools/migrations:/migrations migrate/migrate:latest \
+	-v $(PWD)/tools/db/migration:/migration migrate/migrate:latest \
 	-path /migrations/ -database "postgres://root:password@$(DB_SVC):5432/$(DB_NAME)?sslmode=disable" $(CMD)
-
-models-gen:
-	docker exec -it ${API_SVC} sh tools/sqlboiler/codegen.sh
-
-api-gen:
-	docker run --rm -v "${PWD}:/api" openapitools/openapi-generator-cli generate \
-			-i /api/docs/openapi.yaml \
-			-g go \
-			-o /api/gen

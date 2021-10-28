@@ -7,6 +7,10 @@ resource "aws_subnet" "public" {
   lifecycle {
     create_before_destroy = true
   }
+  tags = {
+    Name        = var.service
+    Service     = var.service
+  }
 }
 
 resource "aws_route_table" "public" {
@@ -14,6 +18,10 @@ resource "aws_route_table" "public" {
   route {
     cidr_block = "0.0.0.0/0"
     gateway_id = var.gateway_id
+  }
+  tags = {
+    Name        = var.service
+    Service     = var.service
   }
 }
 
