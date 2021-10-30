@@ -25,4 +25,4 @@ migration-gen:
 migrate:
 	docker run --rm --name migrate --net $(NET) \
 	-v $(PWD)/tools/db/migration:/migration migrate/migrate:latest \
-	-path /migrations/ -database "postgres://root:password@$(DB_SVC):5432/$(DB_NAME)?sslmode=disable" $(CMD)
+	-path /migration/ -database "mysql://root:password@tcp($(DB_SVC):3306)/$(DB_NAME)" $(CMD)
