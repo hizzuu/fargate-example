@@ -6,10 +6,6 @@ variable "service" {
   type = string
 }
 
-variable "environment" {
-  type = string
-}
-
 variable "fargate_capacity_provider_base" {
   type = number
 }
@@ -50,15 +46,7 @@ variable "task_role_policy_arns" {
   type = set(string)
 }
 
-variable "ssm_arns" {
-  type = list(string)
-}
-
 variable "api_target_group_arn" {
-  type = string
-}
-
-variable "google_service_account_json" {
   type = string
 }
 
@@ -79,31 +67,4 @@ variable "api_container_port" {
 }
 
 variable "api_environments" {
-}
-
-variable "worker_image" {
-  type = string
-}
-
-variable "worker_cpu" {
-  type = number
-}
-
-variable "worker_memory" {
-  type = number
-}
-
-variable "worker_environments" {
-}
-
-variable "bastion_image" {
-  type = string
-}
-
-variable "bastion_cpu" {
-  type = number
-}
-
-variable "bastion_memory" {
-  type = number
 }

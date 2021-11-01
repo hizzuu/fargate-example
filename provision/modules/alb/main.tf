@@ -15,13 +15,13 @@ resource "aws_lb" "default" {
 }
 
 resource "aws_lb_target_group" "default" {
-  name        = "${var.service}-sg"
+  name        = "${var.service}-tg"
   port        = 80
   protocol    = "HTTP"
   target_type = "ip"
   vpc_id      = var.vpc_id
   health_check {
-    path     = "/healthcheck"
+    path     = "/v1/healthcheck"
     matcher  = 200
     interval = 300
   }
@@ -35,8 +35,8 @@ resource "aws_lb_listener" "http" {
   port              = 80
   protocol          = "HTTP"
   default_action {
-    type             = "forward"
     target_group_arn = aws_lb_target_group.default.arn
+    type             = "forward"
   }
   tags = {
     Service     = var.service

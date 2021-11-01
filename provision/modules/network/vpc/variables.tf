@@ -1,1 +1,3 @@
 variable "service" {}
+
+variable "cidr" {}
