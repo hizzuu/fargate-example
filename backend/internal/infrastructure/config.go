@@ -10,6 +10,12 @@ type appConfig struct {
 }
 
 type dbConfig struct {
+	User string
+	Pass string
+	Net  string
+	Host string
+	Port string
+	Name string
 }
 
 type apiConfig struct {
@@ -38,7 +44,12 @@ func initAppConf() {
 }
 
 func initDBConf() {
-
+	DBConf.User = os.Getenv("DB_USER")
+	DBConf.Pass = os.Getenv("DB_PASS")
+	DBConf.Net = os.Getenv("DB_NET")
+	DBConf.Host = os.Getenv("DB_HOST")
+	DBConf.Port = os.Getenv("DB_PORT")
+	DBConf.Name = os.Getenv("DB_NAME")
 }
 
 func initApiConf() {

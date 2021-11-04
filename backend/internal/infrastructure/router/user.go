@@ -7,10 +7,10 @@ import (
 	"github.com/hizzuu/app/internal/usecase/interactor"
 )
 
-func (r *router) setupUserRouter() {
+func (r *router) setUserRoutes() {
 	userCtrl := controllers.NewUserController(
 		interactor.NewUserInteractor(
-			repository.NewUserRepository(),
+			repository.NewUserRepository(r.sqlHandler),
 		),
 	)
 	v1 := r.e.Group("/v1")
