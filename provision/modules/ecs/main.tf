@@ -150,7 +150,7 @@ resource "aws_ecs_task_definition" "backend" {
 }
 
 resource "aws_ecs_service" "backend" {
-  name            = "backend"
+  name            = "api"
   cluster         = aws_ecs_cluster.default.id
   launch_type     = "FARGATE"
   task_definition = aws_ecs_task_definition.backend.arn

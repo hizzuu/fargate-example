@@ -23,7 +23,7 @@ resource "aws_lb_target_group" "default" {
   health_check {
     path     = "/v1/healthcheck"
     matcher  = 200
-    interval = 300
+    interval = 60
   }
   tags = {
     Service     = var.service
@@ -35,8 +35,8 @@ resource "aws_lb_listener" "http" {
   port              = 80
   protocol          = "HTTP"
   default_action {
-    target_group_arn = aws_lb_target_group.default.arn
     type             = "forward"
+    target_group_arn = aws_lb_target_group.default.arn
   }
   tags = {
     Service     = var.service
