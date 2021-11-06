@@ -14,7 +14,7 @@ type userInteractor struct {
 type UserInteractor interface {
 	Get(ctx context.Context, id int64) (*domain.User, error)
 	List()
-	Create()
+	Create(ctx context.Context, u *domain.User) (*domain.User, error)
 	Update()
 	Delete()
 }
@@ -33,8 +33,8 @@ func (i *userInteractor) List() {
 	i.userRepo.List()
 }
 
-func (i *userInteractor) Create() {
-	i.userRepo.Create()
+func (i *userInteractor) Create(ctx context.Context, u *domain.User) (*domain.User, error) {
+	return i.userRepo.Create(ctx, u)
 }
 
 func (i *userInteractor) Update() {

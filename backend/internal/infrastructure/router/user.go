@@ -1,7 +1,7 @@
 package router
 
 import (
-	"github.com/gin-gonic/gin"
+	"github.com/go-chi/chi/v5"
 	"github.com/hizzuu/app/internal/interfaces/controllers"
 	"github.com/hizzuu/app/internal/interfaces/repository"
 	"github.com/hizzuu/app/internal/usecase/interactor"
@@ -13,12 +13,11 @@ func (r *router) setUserRoutes() {
 			repository.NewUserRepository(r.sqlHandler),
 		),
 	)
-	v1 := r.e.Group("/v1")
-	{
-		v1.GET("/users/:id", func(ctx *gin.Context) { userCtrl.Get(ctx) })
-		v1.GET("/users", func(ctx *gin.Context) { userCtrl.List(ctx) })
-		v1.POST("/users", func(ctx *gin.Context) { userCtrl.Create(ctx) })
-		v1.PUT("/users/:id", func(ctx *gin.Context) { userCtrl.Update(ctx) })
-		v1.DELETE("/users/:id", func(ctx *gin.Context) { userCtrl.Delete(ctx) })
-	}
+	r.e.Route("/v1/users", func(r chi.Router) {
+		r.Get("/{id}", userCtrl.Get)
+		r.Get("/", userCtrl.List)
+		r.Post("/", userCtrl.Create)
+		r.Put("/{id}", userCtrl.Update)
+		r.Delete("/{id}", userCtrl.Delete)
+	})
 }

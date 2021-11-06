@@ -1,14 +1,12 @@
 package router
 
 import (
-	"net/http"
-
-	"github.com/gin-gonic/gin"
+	"github.com/go-chi/chi/v5"
+	"github.com/hizzuu/app/internal/interfaces/controllers"
 )
 
 func (r *router) setHealthCheckRoutes() {
-	v1 := r.e.Group("/v1")
-	v1.GET("/healthcheck", func(c *gin.Context) {
-		c.JSON(http.StatusOK, gin.H{"status": "OK"})
+	r.e.Route("/v1/healthcheck", func(r chi.Router) {
+		r.Get("/", controllers.HandleHealthCheck)
 	})
 }

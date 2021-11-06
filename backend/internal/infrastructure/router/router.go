@@ -1,25 +1,22 @@
 package router
 
 import (
-	"github.com/gin-gonic/gin"
+	"net/http"
+
+	"github.com/go-chi/chi/v5"
+	"github.com/go-chi/chi/v5/middleware"
 	"github.com/hizzuu/app/internal/infrastructure"
 )
 
 type router struct {
-	e          *gin.Engine
+	e          *chi.Mux
 	sqlHandler infrastructure.SqlHandler
 }
 
 func NewRouter(sqlHandler infrastructure.SqlHandler) *router {
-	if !infrastructure.AppConf.Debug {
-		gin.SetMode(gin.ReleaseMode)
-	}
-	r := &router{gin.New(), sqlHandler}
-
+	r := &router{chi.NewRouter(), sqlHandler}
 	// use middleware
-	r.e.Use(gin.Logger())
-	r.e.Use(gin.Recovery())
-
+	r.e.Use(middleware.Logger)
 	// set routes
 	r.setHealthCheckRoutes()
 	r.setUserRoutes()
@@ -27,5 +24,5 @@ func NewRouter(sqlHandler infrastructure.SqlHandler) *router {
 }
 
 func (r *router) Run() {
-	r.e.Run(":" + infrastructure.ApiConf.Addr)
+	http.ListenAndServe(":"+infrastructure.ApiConf.Addr, r.e)
 }
