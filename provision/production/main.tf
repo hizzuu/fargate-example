@@ -31,6 +31,17 @@ module "network" {
   rds_subnets     = var.rds_subnets
 }
 
+module "rds" {
+  source             = "../modules/rds"
+  service            = var.service
+  subnet_ids         = module.network.rds_subnet_ids
+  database_name      = replace("${var.database_name}", "-", "_")
+  security_group_ids = [module.network.rds_security_group_id]
+  master_username    = var.database_master_username
+  master_password    = var.database_master_password
+  instance_class     = var.instance_class
+}
+
 module "alb" {
   source          = "../modules/alb"
   service         = var.service

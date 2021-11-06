@@ -31,6 +31,17 @@ variable "rds_subnets" {
   }
 }
 
+variable "database_name" {
+  default = "app_db"
+}
+
+variable "instance_class" {
+  default = "db.t3.small"
+}
+
+variable "database_master_username" {}
+variable "database_master_password" {}
+
 variable "fargate_capacity_provider_base" {
   default = 0
 }
@@ -73,5 +84,29 @@ variable "fargate_api_environments" {
       name  = "ENV"
       value = "prod"
     },
+    {
+      name = "DB_USER"
+      value = ""
+    },
+    {
+      name = "DB_PASS"
+      value = ""
+    },
+    {
+      name = "DB_NET"
+      value = "tcp"
+    },
+    {
+      name = "DB_HOST"
+      value = ""
+    },
+    {
+      name = "DB_PORT"
+      value = "3306"
+    },
+    {
+      name = "DB_NAME"
+      value = "app_db"
+    }
   ]
 }
