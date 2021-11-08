@@ -77,6 +77,11 @@ resource "aws_iam_role_policy_attachment" "task_exec_role_container_registry_rea
   policy_arn = aws_iam_policy.container_registry_read.arn
 }
 
+resource "aws_iam_role_policy_attachment" "task_exec_role_ssm_parameter_read" {
+  role       = aws_iam_role.task_exec_role.name
+  policy_arn = "arn:aws:iam::aws:policy/AmazonSSMReadOnlyAccess"
+}
+
 resource "aws_iam_role_policy_attachment" "task_exec_role_cloudwatch_logs" {
   role       = aws_iam_role.task_exec_role.name
   policy_arn = "arn:aws:iam::aws:policy/CloudWatchLogsFullAccess"
@@ -131,6 +136,7 @@ resource "aws_ecs_task_definition" "backend" {
       volumesFrom = []
       essential   = true
       environment = var.api_environments
+      secrets = var.api_secrets
       logConfiguration = {
         logDriver = "awslogs"
         options = {

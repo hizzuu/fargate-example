@@ -22,8 +22,8 @@ module "dynamo" {
 }
 
 module "network" {
-  source  = "../modules/network"
-  service = var.service
+  source          = "../modules/network"
+  service         = var.service
   vpc_cidr        = var.vpc_cidr
   region          = var.region
   ingress_subnets = var.ingress_subnets
@@ -40,6 +40,15 @@ module "rds" {
   master_username    = var.database_master_username
   master_password    = var.database_master_password
   instance_class     = var.instance_class
+}
+
+module "ssm" {
+  source      = "../modules/ssm"
+  service     = var.service
+  db_username = module.rds.username
+  db_password = module.rds.password
+  db_host     = module.rds.address
+  db_name     = module.rds.name
 }
 
 module "alb" {
@@ -76,4 +85,5 @@ module "ecs" {
   api_memory                            = var.fargate_api_memory
   api_container_port                    = var.fargate_api_container_port
   api_environments                      = var.fargate_api_environments
+  api_secrets                           = module.ssm.ssm_parameter_environments
 }

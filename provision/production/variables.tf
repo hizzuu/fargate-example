@@ -85,28 +85,12 @@ variable "fargate_api_environments" {
       value = "prod"
     },
     {
-      name = "DB_USER"
-      value = ""
-    },
-    {
-      name = "DB_PASS"
-      value = ""
-    },
-    {
-      name = "DB_NET"
+      name  = "DB_NET"
       value = "tcp"
     },
     {
-      name = "DB_HOST"
-      value = ""
-    },
-    {
-      name = "DB_PORT"
+      name  = "DB_PORT"
       value = "3306"
     },
-    {
-      name = "DB_NAME"
-      value = "app_db"
-    }
   ]
 }

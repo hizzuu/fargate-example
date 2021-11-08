@@ -66,5 +66,6 @@ variable "api_container_port" {
   type = number
 }
 
-variable "api_environments" {
-}
+variable "api_environments" {}
+
+variable "api_secrets" {}
