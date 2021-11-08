@@ -4,7 +4,7 @@ services:
     container_name: api
     build:
       context: ./build/api
-      target: prod
+      target: dev
     env_file:
       - build/api/.env
     tty: true
