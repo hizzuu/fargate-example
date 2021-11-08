@@ -1,0 +1,28 @@
+name: test
+on:
+  push:
+    paths:
+      - '/backend/**'
+
+jobs:
+  test:
+    name: test ${{ matrix.go }}
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        go: [ '1.17.x' ]
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+      - name: setup golang
+        uses: actions/setup-go@v1
+        with:
+          go-version: ${{ matrix.go }}
+      - name: go mod download
+        run: go mod download
+        working-directory: ./app
+        env:
+          GO111MODULE: on
+      - name: go vet
+        run: go vet ./...
+        working-directory: ./app
