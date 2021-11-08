@@ -26,3 +26,6 @@ jobs:
       - name: go vet
         run: go vet ./...
         working-directory: ./backend
+      - name: go test
+        run: go test -v ./...
+        working-directory: ./backend
