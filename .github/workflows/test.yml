@@ -2,7 +2,7 @@ name: test
 on:
   push:
     # paths:
-    #   - '/backend/**'
+    #   - 'backend/**'
 
 jobs:
   test:
@@ -20,9 +20,9 @@ jobs:
           go-version: ${{ matrix.go }}
       - name: go mod download
         run: go mod download
-        working-directory: ./app
+        working-directory: ./backend
         env:
           GO111MODULE: on
       - name: go vet
         run: go vet ./...
-        working-directory: ./app
+        working-directory: ./backend
