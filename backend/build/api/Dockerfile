@@ -9,7 +9,7 @@ ENV CGO_ENABLED 0
 RUN apk add --no-cache alpine-sdk git tzdata \
     && cp /usr/share/zoneinfo/Asia/Tokyo /etc/localtime \
     && echo "Asia/Tokyo" > /etc/timezone \
-    && go get -u github.com/cosmtrek/air
+    && go install github.com/cosmtrek/air@latest
 
 COPY . .
 

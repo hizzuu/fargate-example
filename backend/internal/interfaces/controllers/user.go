@@ -14,19 +14,17 @@ import (
 	"github.com/hizzuu/app/utils/errors"
 )
 
-type userController struct {
+type UserController struct {
 	userInteractor interactor.UserInteractor
 }
 
-func NewUserController(
-	userInteractor interactor.UserInteractor,
-) *userController {
-	return &userController{
+func NewUserController(userInteractor interactor.UserInteractor) *UserController {
+	return &UserController{
 		userInteractor,
 	}
 }
 
-func (c *userController) Get(w http.ResponseWriter, req *http.Request) {
+func (c *UserController) Get(w http.ResponseWriter, req *http.Request) {
 	id, err := strconv.ParseInt(chi.URLParam(req, "id"), 10, 64)
 	if err != nil {
 		response.ErrJson(w, errors.Errorf(codes.BadParams, err.Error()))
@@ -40,10 +38,10 @@ func (c *userController) Get(w http.ResponseWriter, req *http.Request) {
 	response.Json(w, codes.OK, u)
 }
 
-func (c *userController) List(w http.ResponseWriter, req *http.Request) {
+func (c *UserController) List(w http.ResponseWriter, req *http.Request) {
 }
 
-func (c *userController) Create(w http.ResponseWriter, req *http.Request) {
+func (c *UserController) Create(w http.ResponseWriter, req *http.Request) {
 	body, err := ioutil.ReadAll(req.Body)
 	if err != nil {
 		response.ErrJson(w, errors.Errorf(codes.BadParams, err.Error()))
@@ -62,8 +60,8 @@ func (c *userController) Create(w http.ResponseWriter, req *http.Request) {
 	response.Json(w, codes.Created, u)
 }
 
-func (c *userController) Update(w http.ResponseWriter, req *http.Request) {
+func (c *UserController) Update(w http.ResponseWriter, req *http.Request) {
 }
 
-func (c *userController) Delete(w http.ResponseWriter, req *http.Request) {
+func (c *UserController) Delete(w http.ResponseWriter, req *http.Request) {
 }

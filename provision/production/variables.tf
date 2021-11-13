@@ -36,7 +36,7 @@ variable "database_name" {
 }
 
 variable "instance_class" {
-  default = "db.t3.small"
+  default = "db.t2.micro"
 }
 
 variable "database_master_username" {}

@@ -19,7 +19,7 @@ type UserInteractor interface {
 	Delete()
 }
 
-func NewUserInteractor(userRepo repository.UserRepository) UserInteractor {
+func NewUserInteractor(userRepo repository.UserRepository) *userInteractor {
 	return &userInteractor{
 		userRepo,
 	}
